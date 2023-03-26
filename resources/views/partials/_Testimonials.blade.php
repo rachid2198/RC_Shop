@@ -4,8 +4,8 @@
         <div class="row">
             <div class="col-12">
                 <div class="section-title text-center m-0">
-                    <h2 class="title">Client Feedback</h2>
-                    <p>There are many variations of passages of Lorem Ipsum available</p>
+                    <h2 class="title">Revues des clients</h2>
+                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Minus, atque.</p>
                 </div>
             </div>
         </div>

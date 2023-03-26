@@ -1,0 +1,52 @@
+.main{
+    padding-top: 5vh;
+    width:80vw;
+    margin: auto;
+}
+
+.title{
+    margin-bottom: 5vh;
+}
+
+.pagination-bar{
+    margin: 2rem 0 2rem 0;
+}
+
+.letter-title{
+    margin-bottom: 2rem;
+    color: #73777B;
+}
+
+.brands-by-letter{
+    margin-bottom: 5vh;
+}
+
+.brand{
+    padding: 1rem 0 1rem 0;
+    color:#222222;
+    text-transform: capitalize;
+}
+
+/* pagination */
+
+
+.page-item{
+    border: 1px solid #A9A9A9;
+}
+
+.pagination > li > a
+{
+    background-color: 	#E5E4E2;
+    color: #222222;
+}
+
+.pagination > li > a:focus,
+.pagination > li > a:hover,
+.pagination > li > span:focus,
+.pagination > li > span:hover
+{
+    color: #5a5a5a;
+    background-color: #eee;
+    border-color: #ddd;
+    color: #0099df;
+}

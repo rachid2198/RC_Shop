@@ -5,11 +5,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hmart - Home One</title>
+    <title>DZ RC modélisme</title>
     <meta name="robots" content="index, follow" />
     <meta name="description" content="Hmart-Smart Product eCommerce html Template">
     <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="{{asset('images/favicon.ico') }}" />
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('images/favicon.ico') }}" />
     <!-- CSS
     ============================================ -->
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" />
@@ -24,15 +24,6 @@
     <!-- Minify Version -->
     <!-- <link rel="stylesheet" href="assets/css/plugins.min.css">
     <link rel="stylesheet" href="assets/css/style.min.css"> -->
-    <style>
-        img {
-          display: block;
-          max-width: 100%;
-          max-height: 100%;
-          min-width: 100%;
-          max-width: 100%;
-        }
-    </style>
 </head>
 
 <body>
@@ -44,7 +35,7 @@
                     <div class="row justify-content-between align-items-center">
                         <div class="col">
                             <div class="welcome-text">
-                                <p>World Wide Completely Free Returns and Shipping</p>
+                                <p>Vente de composants électroniques et d'accessoires</p>
                             </div>
                         </div>
                         <div class="col d-none d-lg-block">
@@ -52,8 +43,7 @@
                                 <ul>
                                     <li><a href="tel:0123456789"><i class="fa fa-phone"></i> +012 3456 789</a></li>
                                     <li><a href="mailto:demo@example.com"><i class="fa fa-envelope-o"></i>
-                                            demo@example.com</a></li>
-                                    <li><a href="my-account.html"><i class="fa fa-user"></i> Account</a></li>
+                                            mohamedaero16@yahoo.fr</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -67,8 +57,7 @@
                     <div class="row justify-content-between align-items-center">
                         <div class="col-lg-3 col">
                             <div class="header-logo">
-                                <a href="index.html"><img src="{{asset('images/logo/logo.jpg') }}"
-                                        alt="Site Logo" /></a>
+                                <a href="/"><img src="{{asset('images/logo/logo.png') }}" alt="Site Logo" /></a>
                             </div>
                         </div>
                         <div class="col-lg-6 d-none d-lg-block">
@@ -81,11 +70,6 @@
                         </div>
                         <div class="col-lg-3 col">
                             <div class="header-actions">
-                                <!-- Single Wedge Start -->
-                                <a href="#offcanvas-wishlist" class="header-action-btn offcanvas-toggle">
-                                    <i class="pe-7s-like"></i>
-                                </a>
-                                <!-- Single Wedge End -->
                                 <a href="#offcanvas-cart"
                                     class="header-action-btn header-action-btn-cart offcanvas-toggle pr-0">
                                     <i class="pe-7s-shopbag"></i>
@@ -108,8 +92,7 @@
                     <div class="row justify-content-between align-items-center">
                         <div class="col-lg-3 col">
                             <div class="header-logo">
-                                <a href="index.html"><img src="{{asset('images/logo/logo.png') }}"
-                                        alt="Site Logo" /></a>
+                                <a href="/"><img src="{{ asset('images/logo/logo.png') }}" alt="Site Logo" /></a>
                             </div>
                         </div>
                         <div class="col-lg-6 d-none d-lg-block">
@@ -122,11 +105,6 @@
                         </div>
                         <div class="col-lg-3 col">
                             <div class="header-actions">
-                                <!-- Single Wedge Start -->
-                                <a href="#offcanvas-wishlist" class="header-action-btn offcanvas-toggle">
-                                    <i class="pe-7s-like"></i>
-                                </a>
-                                <!-- Single Wedge End -->
                                 <a href="#offcanvas-cart"
                                     class="header-action-btn header-action-btn-cart offcanvas-toggle pr-0">
                                     <i class="pe-7s-shopbag"></i>
@@ -149,138 +127,48 @@
                     <div class="header-nav">
                         <div class="main-menu position-relative">
                             <ul>
-                                <li class="dropdown"><a href="#">Home <i class="fa fa-angle-down"></i></a>
+                                <li><a href="/">Acceuil</a></li>
+                                <li><a href="/produits">Boutique</a></li>
+                                <li class="dropdown "><a href="#">Catégories<i class="fa fa-angle-down"></i></a>
                                     <ul class="sub-menu">
-                                        <li><a href="index.html">Home 1</a></li>
-                                        <li><a href="index-2.html">Home 2</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="about.html">About</a></li>
-                                <li class="dropdown position-static"><a href="about.html">Pages <i
-                                            class="fa fa-angle-down"></i></a>
-                                    <ul class="mega-menu d-block">
-                                        <li class="d-flex">
-                                            <ul class="d-block">
-                                                <li class="title"><a href="#">Inner Pages</a></li>
-                                                <li><a href="404.html">404 Page</a></li>
-                                                <li><a href="order-tracking.html">Order Tracking</a></li>
-                                                <li><a href="faq.html">Faq Page</a></li>
-                                                <li><a href="coming-soon.html">Coming Soon Page</a></li>
-                                            </ul>
-                                            <ul class="d-block">
-                                                <li class="title"><a href="#">Other Shop Pages</a></li>
-                                                <li><a href="cart.html">Cart Page</a></li>
-                                                <li><a href="checkout.html">Checkout Page</a></li>
-                                                <li><a href="compare.html">Compare Page</a></li>
-                                                <li><a href="wishlist.html">Wishlist Page</a></li>
-                                            </ul>
-                                            <ul class="d-block">
-                                                <li class="title"><a href="#">Related Shop Pages</a></li>
-                                                <li><a href="my-account.html">Account Page</a></li>
-                                                <li><a href="login.html">Login & Register Page</a></li>
-                                                <li><a href="empty-cart.html">Empty Cart Page</a></li>
-                                                <li><a href="thank-you-page.html">Thank You Page</a></li>
-                                            </ul>
-                                            <ul
-                                                class="d-flex align-items-center p-0 border-0 flex-column justify-content-center">
-                                                <li>
-                                                    <a class="p-0" href="shop-left-sidebar.html"><img
-                                                            class="img-responsive w-100"
-                                                            src="{{ asset('images/banner/menu-banner.png') }}"
-                                                            alt=""></a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="dropdown position-static"><a href="#">Shop <i
-                                            class="fa fa-angle-down"></i></a>
-                                    <ul class="mega-menu d-block">
-                                        <li class="d-flex">
-                                            <ul class="d-block">
-                                                <li class="title"><a href="#">Shop Page</a></li>
-                                                <li><a href="shop-3-column.html">Shop 3 Column</a></li>
-                                                <li><a href="shop-4-column.html">Shop 4 Column</a></li>
-                                                <li><a href="shop-left-sidebar.html">Shop Left Sidebar</a></li>
-                                                <li><a href="shop-right-sidebar.html">Shop Right Sidebar</a></li>
-                                                <li><a href="shop-list-left-sidebar.html">Shop List Left Sidebar</a>
-                                                </li>
-                                                <li><a href="shop-list-right-sidebar.html">Shop List Right Sidebar</a>
-                                                </li>
-                                            </ul>
-                                            <ul class="d-block">
-                                                <li class="title"><a href="#">product Details Page</a></li>
-                                                <li><a href="single-product.html">Product Single</a></li>
-                                                <li><a href="single-product-variable.html">Product Variable</a></li>
-                                                <li><a href="single-product-affiliate.html">Product Affiliate</a></li>
-                                                <li><a href="single-product-group.html">Product Group</a></li>
-                                                <li><a href="single-product-tabstyle-2.html">Product Tab 2</a></li>
-                                                <li><a href="single-product-tabstyle-3.html">Product Tab 3</a></li>
-                                            </ul>
-                                            <ul class="d-block">
-                                                <li class="title"><a href="#">Single Product Page</a></li>
-                                                <li><a href="single-product-slider.html">Product Slider</a></li>
-                                                <li><a href="single-product-gallery-left.html">Product Gallery Left</a>
-                                                <li><a href="single-product-gallery-right.html">Product Gallery
-                                                        Right</a> </li>
-                                                <li><a href="single-product-sticky-left.html">Product Sticky Left</a>
-                                                </li>
-                                                <li><a href="single-product-sticky-right.html">Product Sticky Right</a>
-                                                </li>
-                                                <li><a href="cart.html">Cart Page</a></li>
-                                            </ul>
-                                            <ul class="d-block p-0 border-0">
-                                                <li class="title"><a href="#">Single Product Page</a></li>
-                                                <li><a href="checkout.html">Checkout Page</a></li>
-                                                <li><a href="compare.html">Compare Page</a></li>
-                                                <li><a href="wishlist.html">Wishlist Page</a></li>
-                                                <li><a href="my-account.html">Account Page</a></li>
-                                                <li><a href="login.html">Login & Register Page</a></li>
-                                                <li><a href="empty-cart.html">Empty Cart Page</a></li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="dropdown "><a href="#">Blog <i class="fa fa-angle-down"></i></a>
-                                    <ul class="sub-menu">
-                                        <li class="dropdown position-static"><a
-                                                href="blog-grid-left-sidebar.html">Blog Grid
+                                        <li class="dropdown position-static"><a href="blog-grid-left-sidebar.html">Moteurs Brushless
                                                 <i class="fa fa-angle-right"></i></a>
                                             <ul class="sub-menu sub-menu-2">
-                                                <li><a href="blog-grid.html">Blog Grid</a></li>
-                                                <li><a href="blog-grid-left-sidebar.html">Blog Grid Left Sidebar</a>
-                                                </li>
-                                                <li><a href="blog-grid-right-sidebar.html">Blog Grid Right Sidebar</a>
-                                                </li>
+                                                <li><a href="blog-grid.html">EMAX 980</a></li>
+                                                <li><a href="blog-grid.html">EMAX 860</a></li>
+                                                <li><a href="blog-grid.html">EMAX 620</a></li>
+                                                <li><a href="blog-grid.html">EMAX 1000</a></li>
+                                                <li><a href="blog-grid.html">EMAX 1400</a></li>
                                             </ul>
                                         </li>
-                                        <li class="dropdown position-static"><a
-                                                href="blog-list-left-sidebar.html">Blog List
+                                        <li class="dropdown position-static"><a href="blog-list-left-sidebar.html">Hélics
                                                 <i class="fa fa-angle-right"></i></a>
                                             <ul class="sub-menu sub-menu-2">
-                                                <li><a href="blog-list.html">Blog List</a></li>
-                                                <li><a href="blog-list-left-sidebar.html">Blog List Left Sidebar</a>
-                                                </li>
-                                                <li><a href="blog-list-right-sidebar.html">Blog List Right Sidebar</a>
-                                                </li>
+                                                <li><a href="blog-list.html">Prop 10x45</a></li>
+                                                <li><a href="blog-list.html">Prop 12x6</a></li>
+                                                <li><a href="blog-list.html">Prop 13x6.5</a></li>
+                                                <li><a href="blog-list.html">Prop 16x8</a></li>
                                             </ul>
                                         </li>
-                                        <li class="dropdown position-static"><a
-                                                href="blog-single-left-sidebar.html">Single
-                                                Blog <i class="fa fa-angle-right"></i></a>
+                                        <li class="dropdown position-static"><a href="blog-single-left-sidebar.html"> ESC
+                                            <i class="fa fa-angle-right"></i></a>
                                             <ul class="sub-menu sub-menu-2">
-                                                <li><a href="blog-single.html">Single Blog</a>
-                                                <li><a href="blog-single-left-sidebar.html">Single Blog Left
-                                                        Sidebar</a>
-                                                </li>
-                                                <li><a href="blog-single-right-sidebar.html">Single Blog Right
-                                                        Sidebar</a>
-                                                </li>
+                                                <li><a href="blog-single.html">ESC 20A</a>
+                                                <li><a href="blog-single.html">ESC 30A</a>
+                                                <li><a href="blog-single.html">ESC 40A</a>
+                                                <li><a href="blog-single.html">ESC 50A</a>
+                                                <li><a href="blog-single.html">ESC 60A</a>
+                                                <li><a href="blog-single.html">ESC 80A</a>
                                             </ul>
                                         </li>
                                     </ul>
                                 </li>
-                                <li><a href="contact.html">Contact</a></li>
+                                <li class="dropdown position-static"><a href="/marques">Marques </a>
+                                </li>
+                                <li><a href="/tracking">Suivi des commandes</a></li>
+                                <li><a href="/garantie">Garantie</a></li>
+                                <li><a href="/about">A propos de nous</a></li>
+                                <li><a href="/contact">Contact</a></li>
                             </ul>
                         </div>
                     </div>
@@ -303,85 +191,42 @@
         <!-- offcanvas overlay start -->
         <div class="offcanvas-overlay"></div>
         <!-- offcanvas overlay end -->
-        <!-- OffCanvas Wishlist Start -->
-        <div id="offcanvas-wishlist" class="offcanvas offcanvas-wishlist">
-            <div class="inner">
-                <div class="head">
-                    <span class="title">Wishlist</span>
-                    <button class="offcanvas-close">×</button>
-                </div>
-                <div class="body customScroll">
-                    <ul class="minicart-product-list">
-                        <li>
-                            <a href="single-product.html" class="image"><img
-                                    src="{{ asset('images/product-image/1.webp') }}" alt="Cart product Image"></a>
-                            <div class="content">
-                                <a href="single-product.html" class="title">Modern Smart Phone</a>
-                                <span class="quantity-price">1 x <span class="amount">$21.86</span></span>
-                                <a href="#" class="remove">×</a>
-                            </div>
-                        </li>
-                        <li>
-                            <a href="single-product.html" class="image"><img
-                                    src="{{ asset('images/product-image/2.webp') }}" alt="Cart product Image"></a>
-                            <div class="content">
-                                <a href="single-product.html" class="title">Bluetooth Headphone</a>
-                                <span class="quantity-price">1 x <span class="amount">$13.28</span></span>
-                                <a href="#" class="remove">×</a>
-                            </div>
-                        </li>
-                        <li>
-                            <a href="single-product.html" class="image"><img
-                                    src="{{ asset('images/product-image/3.webp') }}" alt="Cart product Image"></a>
-                            <div class="content">
-                                <a href="single-product.html" class="title">Smart Music Box</a>
-                                <span class="quantity-price">1 x <span class="amount">$17.34</span></span>
-                                <a href="#" class="remove">×</a>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-                <div class="foot">
-                    <div class="buttons">
-                        <a href="wishlist.html" class="btn btn-dark btn-hover-primary mt-30px">view wishlist</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- OffCanvas Wishlist End -->
         <!-- OffCanvas Cart Start -->
         <div id="offcanvas-cart" class="offcanvas offcanvas-cart">
             <div class="inner">
                 <div class="head">
-                    <span class="title">Cart</span>
+                    <span class="title">Panier</span>
                     <button class="offcanvas-close">×</button>
                 </div>
                 <div class="body customScroll">
                     <ul class="minicart-product-list">
                         <li>
                             <a href="single-product.html" class="image"><img
-                                    src="{{ asset('images/product-image/1.webp') }}" alt="Cart product Image"></a>
+                                    src="https://scontent.falg6-1.fna.fbcdn.net/v/t45.5328-4/315345654_5504969579615614_6525359353039872198_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=c48759&_nc_eui2=AeGdyO2SnuU6pjtGLG0V7VpaJ7ACVDDDTXInsAJUMMNNcouzO7mbVNXKoSwIUorgUevSdVdDg6QOo-qoofJE--W_&_nc_ohc=A3TfyY1TJTUAX-M36kx&_nc_ht=scontent.falg6-1.fna&oh=00_AfCJU0XMqnRca2d9bNjyVIQ87yV2V07B0lgofiM1Q0ikKg&oe=64132ED0" 
+                                    alt="Cart product Image"></a>
                             <div class="content">
-                                <a href="single-product.html" class="title">Modern Smart Phone</a>
-                                <span class="quantity-price">1 x <span class="amount">$18.86</span></span>
+                                <a href="single-product.html" class="title">Anycubic Photon Mono</a>
+                                <span class="quantity-price">1 x <span class="amount">220000 DA</span></span>
                                 <a href="#" class="remove">×</a>
                             </div>
                         </li>
                         <li>
                             <a href="single-product.html" class="image"><img
-                                    src="{{ asset('images/product-image/2.webp') }}" alt="Cart product Image"></a>
+                                    src="https://scontent.falg6-1.fna.fbcdn.net/v/t45.5328-4/312963251_5622419964478041_5094373234694042432_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=c48759&_nc_eui2=AeFOtE9ZizVA9OmZwpnxqJs_t0yNh_c4UZm3TI2H9zhRmQUnIVkBNICnGzUtmdMCZJNFNXDQW-QpoAVragTm6VtV&_nc_ohc=CL3YrTR23ZkAX866894&_nc_ht=scontent.falg6-1.fna&oh=00_AfBZKCv1L1LhCPHRLRPZX0JPT2FF4_iKjFT7yKhRRlpzyQ&oe=64121576" 
+                                    alt="Cart product Image"></a>
                             <div class="content">
-                                <a href="single-product.html" class="title">Bluetooth Headphone</a>
-                                <span class="quantity-price">1 x <span class="amount">$43.28</span></span>
+                                <a href="single-product.html" class="title">elegoo mars 3 pro 4k</a>
+                                <span class="quantity-price">1 x <span class="amount">145000 DA</span></span>
                                 <a href="#" class="remove">×</a>
                             </div>
                         </li>
                         <li>
                             <a href="single-product.html" class="image"><img
-                                    src="{{ asset('images/product-image/3.webp') }}" alt="Cart product Image"></a>
+                                    src="https://scontent.falg6-2.fna.fbcdn.net/v/t45.5328-4/315999627_8253780054693635_1254714160917287736_n.png?stp=dst-png_s960x960&_nc_cat=109&ccb=1-7&_nc_sid=c48759&_nc_eui2=AeFFxshPdcc8rY-Noq5iya-v45Coh2imp9njkKiHaKan2fdw22U5DBvSdysIA3rs_quM3Gs4yMmagQ95uSCorKU5&_nc_ohc=o4OzX74fJ2EAX9sFum5&_nc_ht=scontent.falg6-2.fna&oh=00_AfBHU70SCY3mr39OH2Yf-u-RD4Bk0AGuxJa5HeCfZrperw&oe=64125E55" 
+                                    alt="Cart product Image"></a>
                             <div class="content">
-                                <a href="single-product.html" class="title">Smart Music Box</a>
-                                <span class="quantity-price">1 x <span class="amount">$37.34</span></span>
+                                <a href="single-product.html" class="title">Creality Ender 3 V2</a>
+                                <span class="quantity-price">1 x <span class="amount">89000 DA</span></span>
                                 <a href="#" class="remove">×</a>
                             </div>
                         </li>
@@ -389,8 +234,7 @@
                 </div>
                 <div class="foot">
                     <div class="buttons mt-30px">
-                        <a href="cart.html" class="btn btn-dark btn-hover-primary mb-30px">view cart</a>
-                        <a href="checkout.html" class="btn btn-outline-dark current-btn">checkout</a>
+                        <a href="/cart" class="btn btn-dark btn-hover-primary mb-30px">Accéder au Panier</a>
                     </div>
                 </div>
             </div>
@@ -402,114 +246,55 @@
             <div class="user-panel">
                 <ul>
                     <li><a href="tel:0123456789"><i class="fa fa-phone"></i> +012 3456 789</a></li>
-                    <li><a href="mailto:demo@example.com"><i class="fa fa-envelope-o"></i> demo@example.com</a></li>
-                    <li><a href="my-account.html"><i class="fa fa-user"></i> Account</a></li>
+                    <li><a href="mailto:demo@example.com"><i class="fa fa-envelope-o"></i> mohamedaero16@yahoo.fr</a></li>
                 </ul>
             </div>
             <div class="inner customScroll">
                 <div class="offcanvas-menu mb-4">
                     <ul>
-                        <li><a href="#"><span class="menu-text">Home</span></a>
-                            <ul class="sub-menu">
-                                <li><a href="index.html"><span class="menu-text">Home 1</span></a></li>
-                                <li><a href="index-2.html"><span class="menu-text">Home 2</span></a></li>
-                            </ul>
+                        <li><a href="/"><span class="menu-text">Acceuil</span></a>
                         </li>
-                        <li><a href="about.html">About</a></li>
+                        <li><a href="/produits">Boutique</a></li>
                         <li>
-                            <a href="#"><span class="menu-text">Pages</span></a>
+                            <a><span class="menu-text">Catégories</span></a>
                             <ul class="sub-menu">
                                 <li>
-                                    <a href="#"><span class="menu-text">Inner Pages</span></a>
+                                    <a href="#"><span class="menu-text">Moteurs Brushless</span></a>
                                     <ul class="sub-menu">
-                                        <li><a href="404.html">404 Page</a></li>
-                                        <li><a href="order-tracking.html">Order Tracking</a></li>
-                                        <li><a href="faq.html">Faq Page</a></li>
-                                        <li><a href="coming-soon.html">Coming Soon Page</a></li>
+                                        <li><a href="404.html">EMAX 980</a></li>
+                                        <li><a href="order-tracking.html">EMAX 860</a></li>
+                                        <li><a href="faq.html">EMAX 620</a></li>
+                                        <li><a href="coming-soon.html">EMAX 1000</a></li>
+                                        <li><a href="coming-soon.html">EMAX 1400</a></li>
                                     </ul>
                                 </li>
                                 <li>
-                                    <a href="#"><span class="menu-text"> Other Shop Pages</span></a>
+                                    <a href="#"><span class="menu-text">Helics</span></a>
                                     <ul class="sub-menu">
-                                        <li><a href="cart.html">Cart Page</a></li>
-                                        <li><a href="checkout.html">Checkout Page</a></li>
-                                        <li><a href="compare.html">Compare Page</a></li>
-                                        <li><a href="wishlist.html">Wishlist Page</a></li>
+                                        <li><a href="cart.html">Prop 10x45</a></li>
+                                        <li><a href="checkout.html">Prop 12x6</a></li>
+                                        <li><a href="compare.html">Prop 13x6.5</a></li>
+                                        <li><a href="wishlist.html">Prop 16x8</a></li>
                                     </ul>
                                 </li>
                                 <li>
-                                    <a href="#"><span class="menu-text">Related Shop Page</span></a>
+                                    <a href="#"><span class="menu-text">ESC</span></a>
                                     <ul class="sub-menu">
-                                        <li><a href="my-account.html">Account Page</a></li>
-                                        <li><a href="login.html">Login & Register Page</a></li>
-                                        <li><a href="empty-cart.html">Empty Cart Page</a></li>
-                                        <li><a href="thank-you-page.html">Thank You Page</a></li>
+                                        <li><a href="my-account.html">ESC 20A</a></li>
+                                        <li><a href="login.html">ESC 30A</a></li>
+                                        <li><a href="empty-cart.html">ESC 40A</a></li>
+                                        <li><a href="thank-you-page.html">ESC 50A</a></li>
+                                        <li><a href="thank-you-page.html">ESC 60A</a></li>
+                                        <li><a href="thank-you-page.html">ESC 80A</a></li>
                                     </ul>
                                 </li>
                             </ul>
                         </li>
-                        <li><a href="#"><span class="menu-text">Shop</span></a>
-                            <ul class="sub-menu">
-                                <li>
-                                    <a href="#"><span class="menu-text">Shop Page</span></a>
-                                    <ul class="sub-menu">
-                                        <li><a href="shop-3-column.html">Shop 3 Column</a></li>
-                                        <li><a href="shop-4-column.html">Shop 4 Column</a></li>
-                                        <li><a href="shop-left-sidebar.html">Shop Left Sidebar</a></li>
-                                        <li><a href="shop-right-sidebar.html">Shop Right Sidebar</a></li>
-                                        <li><a href="shop-list-left-sidebar.html">Shop List Left Sidebar</a>
-                                        </li>
-                                        <li><a href="shop-list-right-sidebar.html">Shop List Right Sidebar</a>
-                                        </li>
-                                        <li><a href="cart.html">Cart Page</a></li>
-                                        <li><a href="checkout.html">Checkout Page</a></li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="#"><span class="menu-text">product Details Page</span></a>
-                                    <ul class="sub-menu">
-                                        <li><a href="single-product.html">Product Single</a></li>
-                                        <li><a href="single-product-variable.html">Product Variable</a></li>
-                                        <li><a href="single-product-affiliate.html">Product Affiliate</a></li>
-                                        <li><a href="single-product-group.html">Product Group</a></li>
-                                        <li><a href="single-product-tabstyle-2.html">Product Tab 2</a></li>
-                                        <li><a href="single-product-tabstyle-3.html">Product Tab 3</a></li>
-                                        <li><a href="single-product-slider.html">Product Slider</a></li>
-                                        <li><a href="single-product-gallery-left.html">Product Gallery Left</a>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="#"><span class="menu-text">Single Product Page</span></a>
-                                    <ul class="sub-menu">
-                                        <li><a href="single-product-gallery-right.html">Product Gallery
-                                                Right</a> </li>
-                                        <li><a href="single-product-sticky-left.html">Product Sticky Left</a>
-                                        </li>
-                                        <li><a href="single-product-sticky-right.html">Product Sticky Right</a>
-                                        </li>
-                                        <li><a href="compare.html">Compare Page</a></li>
-                                        <li><a href="wishlist.html">Wishlist Page</a></li>
-                                        <li><a href="my-account.html">Account Page</a></li>
-                                        <li><a href="login.html">Login & Register Page</a></li>
-                                        <li><a href="empty-cart.html">Empty Cart Page</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </li>
-                        <li><a href="#"><span class="menu-text">Blog</span></a>
-                            <ul class="sub-menu">
-                                <li><a href="blog-grid.html">Blog Grid Page</a></li>
-                                <li><a href="blog-grid-left-sidebar.html">Grid Left Sidebar</a></li>
-                                <li><a href="blog-grid-right-sidebar.html">Grid Right Sidebar</a></li>
-                                <li><a href="blog-list.html">Blog List Page</a></li>
-                                <li><a href="blog-list-left-sidebar.html">List Left Sidebar</a></li>
-                                <li><a href="blog-list-right-sidebar.html">List Right Sidebar</a></li>
-                                <li><a href="blog-single.html">Blog Single Page</a></li>
-                                <li><a href="blog-single-left-sidebar.html">Single Left Sidebar</a></li>
-                                <li><a href="blog-single-right-sidebar.html">Single Right Sidbar</a>
-                            </ul>
-                        </li>
-                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="/marques">Marques</a></li>
+                        <li><a href="/tracking">Suivi des commandes</a></li>
+                        <li><a href="/garantie">Garantie</a></li>
+                        <li><a href="/about">A propos de nous</a></li>
+                        <li><a href="/contact">Contact</a></li>
                     </ul>
                 </div>
                 <!-- OffCanvas Menu End -->
@@ -537,7 +322,7 @@
     </div>
 
     <!-- OffCanvas Menu End -->
-    
+
 
     <main>
         {{ $slot }}
@@ -552,7 +337,7 @@
                         <div class="col-md-6 col-lg-3 mb-md-30px mb-lm-30px">
                             <div class="single-wedge">
                                 <div class="footer-logo">
-                                    <a href="index.html"><img src="{{ asset('images/logo/footer-logo.png') }}"
+                                    <a href="/"><img src="{{ asset('images/logo/logo.png') }}"
                                             alt=""></a>
                                 </div>
                                 <p class="about-text">Lorem ipsum dolor sit amet consl adipisi elit, sed do eiusmod
@@ -585,20 +370,20 @@
                         <!-- Start single blog -->
                         <div class="col-md-6 col-lg-3 col-sm-6 mb-lm-30px pl-lg-60px">
                             <div class="single-wedge">
-                                <h4 class="footer-herading">Services</h4>
+                                <h4 class="footer-herading">Pages</h4>
                                 <div class="footer-links">
                                     <div class="footer-row">
                                         <ul class="align-items-center">
-                                            <li class="li"><a class="single-link" href="my-account.html">My
-                                                    Account</a></li>
-                                            <li class="li"><a class="single-link" href="contact.html">Contact</a>
+                                            <li class="li"><a class="single-link" href="/produits">Boutique</a>
                                             </li>
-                                            <li class="li"><a class="single-link" href="cart.html">Shopping
-                                                    cart</a></li>
+                                            <li class="li"><a class="single-link" href="contact.html">Marques</a>
+                                            </li>
+                                            <li class="li"><a class="single-link" href="cart.html">Panier</a>
+                                            </li>
                                             <li class="li"><a class="single-link"
-                                                    href="shop-left-sidebar.html">Shop</a></li>
-                                            <li class="li"><a class="single-link" href="login.html">Services
-                                                    Login</a></li>
+                                                    href="shop-left-sidebar.html">Garantie</a></li>
+                                            <li class="li"><a class="single-link" href="/contact">Contact</a>
+                                            </li>
                                         </ul>
                                     </div>
                                 </div>
@@ -608,20 +393,21 @@
                         <!-- Start single blog -->
                         <div class="col-md-6 col-lg-3 col-sm-6 mb-lm-30px pl-lg-40px">
                             <div class="single-wedge">
-                                <h4 class="footer-herading">My Account</h4>
+                                <h4 class="footer-herading">Catégories</h4>
                                 <div class="footer-links">
                                     <div class="footer-row">
                                         <ul class="align-items-center">
-                                            <li class="li"><a class="single-link" href="my-account.html">My
-                                                    Account</a></li>
-                                            <li class="li"><a class="single-link" href="contact.html">Contact</a>
-                                            </li>
-                                            <li class="li"><a class="single-link" href="cart.html">Shopping
-                                                    cart</a></li>
                                             <li class="li"><a class="single-link"
-                                                    href="shop-left-sidebar.html">Shop</a></li>
-                                            <li class="li"><a class="single-link" href="login.html">Services
-                                                    Login</a></li>
+                                                    href="my-account.html">Imprimantes 3D</a></li>
+                                            <li class="li"><a class="single-link"
+                                                    href="contact.html">Batteries</a>
+                                            </li>
+                                            <li class="li"><a class="single-link" href="cart.html">Moteurs</a>
+                                            </li>
+                                            <li class="li"><a class="single-link"
+                                                    href="shop-left-sidebar.html">RC control</a></li>
+                                            <li class="li"><a class="single-link" href="login.html">Flight
+                                                    Control</a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -631,14 +417,16 @@
                         <!-- Start single blog -->
                         <div class="col-md-6 col-lg-3 col-sm-12">
                             <div class="single-wedge">
-                                <h4 class="footer-herading">Contact Info</h4>
+                                <h4 class="footer-herading">Contacts</h4>
                                 <div class="footer-links">
                                     <!-- News letter area -->
-                                    <p class="address">Address: Your Address Goes Here.</p>
+                                    <p class="address">L'adresse est mis ici.</p>
                                     <p class="phone">Phone/Fax:<a href="tel:0123456789"> 0123456789</a></p>
-                                    <p class="mail">Email:<a href="mailto:demo@example.com"> demo@example.com</a>
+                                    <p class="mail">Email:<a href="mailto:demo@example.com">
+                                            mohamedaero16@yahoo.fr</a>
                                     </p>
-                                    <p class="mail"><a href="https://demo@example.com"> demo@example.com</a></p>
+                                    <p class="mail"><a href="https://demo@example.com"> mohamedaero16@yahoo.fr</a>
+                                    </p>
                                     <!-- News letter area  End -->
                                 </div>
                             </div>
@@ -651,14 +439,14 @@
                 <div class="container">
                     <div class="line-shape-top line-height-1">
                         <div class="row flex-md-row-reverse align-items-center">
-                            <div class="col-md-6 text-center text-md-end">
+                            {{-- <div class="col-md-6 text-center text-md-end">
                                 <div class="payment-mth"><a href="#"><img class="img img-fluid"
                                             src="{{ asset('images/icons/payment.png') }}" alt="payment-image"></a>
                                 </div>
-                            </div>
-                            <div class="col-md-6 text-center text-md-start">
-                                <p class="copy-text"> © 2021 <strong>Hmart</strong> Made With <i class="fa fa-heart"
-                                        aria-hidden="true"></i> By <a class="company-name"
+                            </div> --}}
+                            <div class="text-center text-md-start">
+                                <p class="copy-text"> © 2023 <strong>DZ RC modélisme</strong> Made With <i
+                                        class="fa fa-heart" aria-hidden="true"></i> By <a class="company-name"
                                         href="https://themeforest.net/user/codecarnival/portfolio">
                                         <strong> Sadeem Informatique </strong></a>.</p>
                             </div>
@@ -683,23 +471,28 @@
                                 <div class="swiper-wrapper">
                                     <div class="swiper-slide">
                                         <img class="img-responsive m-auto"
-                                            src="{{asset('images/product-image/zoom-image/1.webp')}}" alt="">
+                                            src="{{ asset('images/product-image/zoom-image/1.webp') }}"
+                                            alt="">
                                     </div>
                                     <div class="swiper-slide">
                                         <img class="img-responsive m-auto"
-                                            src="{{asset('images/product-image/zoom-image/2.webp')}}" alt="">
+                                            src="{{ asset('images/product-image/zoom-image/2.webp') }}"
+                                            alt="">
                                     </div>
                                     <div class="swiper-slide">
                                         <img class="img-responsive m-auto"
-                                            src="{{asset('images/product-image/zoom-image/3.webp')}}" alt="">
+                                            src="{{ asset('images/product-image/zoom-image/3.webp') }}"
+                                            alt="">
                                     </div>
                                     <div class="swiper-slide">
                                         <img class="img-responsive m-auto"
-                                            src="{{asset('images/product-image/zoom-image/4.webp')}}" alt="">
+                                            src="{{ asset('images/product-image/zoom-image/4.webp') }}"
+                                            alt="">
                                     </div>
                                     <div class="swiper-slide">
                                         <img class="img-responsive m-auto"
-                                            src="{{asset('images/product-image/zoom-image/5.webp')}}" alt="">
+                                            src="{{ asset('images/product-image/zoom-image/5.webp') }}"
+                                            alt="">
                                     </div>
                                 </div>
                             </div>
@@ -707,23 +500,28 @@
                                 <div class="swiper-wrapper">
                                     <div class="swiper-slide">
                                         <img class="img-responsive m-auto"
-                                            src="{{asset('images/product-image/small-image/1.webp')}}" alt="">
+                                            src="{{ asset('images/product-image/small-image/1.webp') }}"
+                                            alt="">
                                     </div>
                                     <div class="swiper-slide">
                                         <img class="img-responsive m-auto"
-                                            src="{{asset('images/product-image/small-image/2.webp')}}" alt="">
+                                            src="{{ asset('images/product-image/small-image/2.webp') }}"
+                                            alt="">
                                     </div>
                                     <div class="swiper-slide">
                                         <img class="img-responsive m-auto"
-                                            src="{{asset('images/product-image/small-image/3.webp')}}" alt="">
+                                            src="{{ asset('images/product-image/small-image/3.webp') }}"
+                                            alt="">
                                     </div>
                                     <div class="swiper-slide">
                                         <img class="img-responsive m-auto"
-                                            src="{{asset('images/product-image/small-image/4.webp')}}" alt="">
+                                            src="{{ asset('images/product-image/small-image/4.webp') }}"
+                                            alt="">
                                     </div>
                                     <div class="swiper-slide">
                                         <img class="img-responsive m-auto"
-                                            src="{{asset('images/product-image/small-image/5.webp')}}" alt="">
+                                            src="{{ asset('images/product-image/small-image/5.webp') }}"
+                                            alt="">
                                     </div>
                                 </div>
                                 <!-- Add Arrows -->
@@ -800,7 +598,8 @@
                                     </div>
                                 </div>
                                 <div class="payment-img">
-                                    <a href="#"><img src="{{asset('images/icons/payment.png')}}" alt=""></a>
+                                    <a href="#"><img src="{{ asset('images/icons/payment.png') }}"
+                                            alt=""></a>
                                 </div>
                             </div>
                         </div>
@@ -822,47 +621,7 @@
                     </div>
                     <div class="tt-modal-product">
                         <div class="tt-img">
-                            <img src="{{asset('images/product-image/1.webp')}}" alt="Modern Smart Phone">
-                        </div>
-                        <h2 class="tt-title"><a href="#">Modern Smart Phone</a></h2>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Modal wishlist -->
-    <div class="modal customize-class fade" id="exampleModal-Wishlist" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-body text-center">
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><i
-                            class="pe-7s-close"></i></button>
-                    <div class="tt-modal-messages">
-                        <i class="pe-7s-check"></i> Added to Wishlist successfully!
-                    </div>
-                    <div class="tt-modal-product">
-                        <div class="tt-img">
-                            <img src="{{asset('images/product-image/1.webp')}}" alt="Modern Smart Phone">
-                        </div>
-                        <h2 class="tt-title"><a href="#">Modern Smart Phone</a></h2>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Modal compare -->
-    <div class="modal customize-class fade" id="exampleModal-Compare" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-body text-center">
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><i
-                            class="pe-7s-close"></i></button>
-                    <div class="tt-modal-messages">
-                        <i class="pe-7s-check"></i> Added to compare successfully!
-                    </div>
-                    <div class="tt-modal-product">
-                        <div class="tt-img">
-                            <img src="{{asset('images/product-image/1.webp')}}" alt="Modern Smart Phone">
+                            <img src="{{ asset('images/product-image/1.webp') }}" alt="Modern Smart Phone">
                         </div>
                         <h2 class="tt-title"><a href="#">Modern Smart Phone</a></h2>
                     </div>
