@@ -11,7 +11,8 @@
             text-align: right
         }
 
-        .buttons button,.button-link {
+        .buttons button,
+        .button-link {
             margin-right: 1rem;
             margin-bottom: 1rem
         }
@@ -19,7 +20,7 @@
 @endsection
 
 @section('title')
-    Catégorie: {{ $category['nom'] }}
+    Catégorie: {{ $parentCategory['nom'] }}
 @endsection
 
 @section('content')
@@ -40,7 +41,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($category['subcategories'] as $categorie)
+                        @foreach ($subcategories as $categorie)
                             <tr>
                                 <td>{{ $categorie['nom'] }}</td>
                                 <td>
@@ -55,6 +56,12 @@
                                                 data-toggle="modal" data-target="#delete-Modal{{ $categorie['id'] }}"
                                                 title="Delete">Supprimer</i></button>
                                         </li>
+
+                                        <li class="list-inline-item">
+                                            <a class="btn btn-primary btn-sm rounded-0" type="button"
+                                                href="/admin/subcategories/{{ $categorie['id'] }}">
+                                                Liste des sous-catégories</a>
+                                        </li>
                                     </ul>
                                 </td>
                             </tr>
@@ -65,7 +72,7 @@
         </div>
     </div>
 
-    @foreach ($category['subcategories'] as $category)
+    @foreach ($subcategories as $category)
         <div class="modal fade" id="edit-Modal{{ $category['id'] }}" tabindex="-1" role="dialog"
             aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -78,7 +85,10 @@
                     </div>
                     <div class="modal-body">
                         <div class="card">
-                            <form class="form-horizontal">
+                            <form class="form-horizontal" method="POST"
+                                action="/admin/subcategories/{{ $category->id }}">
+                                @csrf
+                                @method('PUT')
                                 <div class="card-body" id="product-form">
                                     <h4 class="card-title">Modifier une catégorie</h4>
 
@@ -86,18 +96,27 @@
                                         <label for="fname"
                                             class="col-sm-3 text-right control-label col-form-label">Nom</label>
                                         <div class="col-sm-9">
-                                            <input type="text" class="form-control" id="fname"
-                                                placeholder="Nom de la catégorie">
+                                            <input type="text"
+                                                class="{{ $errors->has('nom') ? 'form-control is-invalid' : 'form-control' }}"
+                                                id="fname" placeholder="Nom de la catégorie" name="nom"
+                                                value="{{ $category->nom }}">
+
+                                            @error('nom')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
                                         </div>
                                     </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                                    <button type="submit" class="btn btn-success">Confirmer</button>
                                 </div>
                             </form>
                         </div>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-                        <button type="button" class="btn btn-success">Confirmer</button>
-                    </div>
+
                 </div>
             </div>
         </div>
@@ -105,24 +124,28 @@
         <div class="modal fade" id="delete-Modal{{ $category['id'] }}" tabindex="-1" role="dialog"
             aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Avertissement!</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
+                <form action="/admin/subcategories/{{ $category->id }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Avertissement!</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            Attention ! Vous êtes sur le point de supprimer définitivement une catégorie. Cette action est
+                            irréversible. Êtes-vous sûr(e)
+                            de vouloir
+                            continuer ?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                            <button type="submit" class="btn btn-primary">Supprimer</button>
+                        </div>
                     </div>
-                    <div class="modal-body">
-                        Attention ! Vous êtes sur le point de supprimer définitivement une catégorie. Cette action est
-                        irréversible. Êtes-vous sûr(e)
-                        de vouloir
-                        continuer ?
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-                        <button type="button" class="btn btn-primary">Supprimer</button>
-                    </div>
-                </div>
+                </form>
             </div>
         </div>
     @endforeach
@@ -139,24 +162,34 @@
                 </div>
                 <div class="modal-body">
                     <div class="card">
-                        <form class="form-horizontal">
+                        <form class="form-horizontal" method="POST" action="/admin/subcategories">
+                            @csrf
                             <div class="card-body" id="product-form">
                                 <h4 class="card-title">Ajouter une sous-catégorie</h4>
                                 <div class="form-group row mt-5">
                                     <label for="fname"
                                         class="col-sm-3 text-right control-label col-form-label">Nom</label>
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control" id="fname"
-                                            placeholder="Nom de la catégorie">
+                                        <input type="text"
+                                            class="{{ $errors->has('nom') ? 'form-control is-invalid' : 'form-control' }}"
+                                            id="fname" placeholder="Nom de la catégorie" name="nom">
+
+                                        <input type="hidden" name="parent" value={{ $parentCategory['id'] }}>
+
+                                        @error('nom')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
                                     </div>
                                 </div>
                             </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                                <button type="submit" class="btn btn-success">Confirmer</button>
+                            </div>
                         </form>
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-                    <button type="button" class="btn btn-success">Confirmer</button>
                 </div>
             </div>
         </div>
@@ -167,6 +200,19 @@
     <script src="{{ asset('extra-libs/multicheck/datatable-checkbox-init.js') }}"></script>
     <script src="{{ asset('extra-libs/multicheck/jquery.multicheck.js') }}"></script>
     <script src="{{ asset('extra-libs/DataTables/datatables.min.js') }}"></script>
+
+    @if (session('add_modal'))
+        <script>
+            $('#add-Modal').modal('show');
+        </script>
+    @endif
+
+    @if (session('edit_modal'))
+        <script>
+            var id = {!! json_encode(session('id')) !!}
+            $('#edit-Modal' + id).modal('show');
+        </script>
+    @endif
 
     <script>
         /****************************************

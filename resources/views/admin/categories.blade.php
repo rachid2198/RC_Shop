@@ -7,6 +7,11 @@
     <link href="{{ asset('dist/css/style.min.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/product-list.css') }}" />
     <style>
+        .category_image {
+            width: 4vw;
+            height: auto;
+        }
+
         .buttons {
             text-align: right
         }
@@ -71,7 +76,9 @@
                         @foreach ($categories as $categorie)
                             <tr>
                                 <td>{{ $categorie['nom'] }}</td>
-                                <td></td>
+                                <td> <img class="category_image"
+                                        src="{{ $categorie->image ? asset('storage/' . $categorie->image) : asset('images/blank/blank-category.jpg') }}"
+                                        alt="image"></td>
                                 <td>
                                     <ul class="list-inline m-0">
                                         <li class="list-inline-item">
@@ -86,7 +93,7 @@
                                         </li>
                                         <li class="list-inline-item">
                                             <a class="btn btn-primary btn-sm rounded-0" type="button"
-                                                href="/admin/categories/{{$categorie['id']}}">
+                                                href="/admin/categories/{{ $categorie['id'] }}">
                                                 Liste des sous-catégories</a>
                                         </li>
                                     </ul>
@@ -112,17 +119,31 @@
                     </div>
                     <div class="modal-body">
                         <div class="card">
-                            <form class="form-horizontal">
+                            <form class="form-horizontal" method="POST" action="/admin/categories/{{ $category->id }}" 
+                                enctype="multipart/form-data">
+                                @csrf
+                                @method('PUT')
                                 <div class="card-body" id="product-form">
                                     <h4 class="card-title">Modifier une catégorie</h4>
-                                    
+
                                     <div class="form-group row mt-5">
                                         <label for="fname"
                                             class="col-sm-3 text-right control-label col-form-label">Image</label>
                                         <div class="col-sm-9 image-form">
-                                            <img src="{{ asset('images/blank/blank-category.jpg') }}" onclick="clickfileinput({{$category['id']}})" alt="Click to upload"
-                                                id="editCategory-image{{$category['id']}}">
-                                            <input type="file" id="editCategory-image-input{{$category['id']}}" onchange="changeImage({{$category['id']}})" style="display:none;">
+                                            <img src="{{ $category->image ? asset('storage/' . $category->image) : asset('images/blank/blank-category.jpg') }}"
+                                                onclick="clickfileinput({{ $category['id'] }})" alt="Click to upload"
+                                                id="editCategory-image{{ $category['id'] }}">
+
+                                            <input type="file"
+                                                class="{{ $errors->has('image') ? 'form-control is-invalid' : 'form-control' }}"
+                                                id="editCategory-image-input{{ $category['id'] }}" name="image"
+                                                onchange="changeImage({{ $category['id'] }})" style="display:none;">
+
+                                            @error('image')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
                                         </div>
                                     </div>
 
@@ -130,17 +151,24 @@
                                         <label for="fname"
                                             class="col-sm-3 text-right control-label col-form-label">Nom</label>
                                         <div class="col-sm-9">
-                                            <input type="text" class="form-control" id="fname"
-                                                placeholder="Nom de la catégorie">
+                                            <input type="text"
+                                                class="{{ $errors->has('nom') ? 'form-control is-invalid' : 'form-control' }}"
+                                                id="fname" placeholder="Nom de la catégorie" name="nom"
+                                                value="{{ $category['nom'] }}">
+                                            @error('nom')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
                                         </div>
                                     </div>
                                 </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                                    <button type="submit" class="btn btn-success">Confirmer</button>
+                                </div>
                             </form>
                         </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-                        <button type="button" class="btn btn-success">Confirmer</button>
                     </div>
                 </div>
             </div>
@@ -149,51 +177,31 @@
         <div class="modal fade" id="delete-Modal{{ $category['id'] }}" tabindex="-1" role="dialog"
             aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Avertissement!</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        Attention ! Vous êtes sur le point de supprimer définitivement une catégorie. Cette action est
-                        irréversible et supprimera toutes les sous catégories associées a cette catégorie. Êtes-vous sûr(e)
-                        de vouloir
-                        continuer ?
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-                        <button type="button" class="btn btn-primary">Supprimer</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        {{-- <div class="modal fade" id="subcategories-modal{{ $category['id'] }}" tabindex="-1" role="dialog"
-            aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Les sous-catégories</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="sidebar-widget-category">
-                            <ul>
-                                @foreach ($category['subcategories'] as $sub_category)
-                                    <li><a href="#" class=""> {{ $sub_category }}
-                                        </a>
-                                    </li>
-                                @endforeach
-                            </ul>
+                <form action="/admin/categories/{{ $category->id }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Avertissement!</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            Attention ! Vous êtes sur le point de supprimer définitivement une catégorie. Cette action est
+                            irréversible et supprimera toutes les sous catégories associées a cette catégorie. Êtes-vous
+                            sûr(e)
+                            de vouloir
+                            continuer ?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                            <button type="submit" class="btn btn-primary">Supprimer</button>
                         </div>
                     </div>
-                </div>
+                </form>
             </div>
-        </div> --}}
+        </div>
     @endforeach
 
     <div class="modal fade" id="add-Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -208,7 +216,9 @@
                 </div>
                 <div class="modal-body">
                     <div class="card">
-                        <form class="form-horizontal">
+                        <form class="form-horizontal" method="POST" action="/admin/categories"
+                            enctype="multipart/form-data">
+                            @csrf
                             <div class="card-body" id="product-form">
                                 <h4 class="card-title">Ajouter une catégorie</h4>
                                 <div class="form-group row mt-5">
@@ -217,24 +227,38 @@
                                     <div class="col-sm-9 image-form">
                                         <img src="{{ asset('images/blank/blank-category.jpg') }}" alt="Click to upload"
                                             id="category-image">
-                                        <input type="file" id="category-image-input" style="display:none;">
+                                        <input type="file"
+                                            class="{{ $errors->has('image') ? 'form-control is-invalid' : 'form-control' }}"
+                                            id="category-image-input" name="image" style="display:none;">
+                                        @error('image')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
                                     </div>
                                 </div>
                                 <div class="form-group row mt-5">
                                     <label for="fname"
                                         class="col-sm-3 text-right control-label col-form-label">Nom</label>
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control" id="fname"
-                                            placeholder="Nom de la catégorie">
+                                        <input type="text"
+                                            class="{{ $errors->has('nom') ? 'form-control is-invalid' : 'form-control' }}"
+                                            id="fname" placeholder="Nom de la catégorie" name="nom">
+
+                                        @error('nom')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
                                     </div>
                                 </div>
                             </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                                <button type="submit" class="btn btn-success">Confirmer</button>
+                            </div>
                         </form>
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-                    <button type="button" class="btn btn-success">Confirmer</button>
                 </div>
             </div>
         </div>
@@ -245,6 +269,19 @@
     <script src="{{ asset('extra-libs/multicheck/datatable-checkbox-init.js') }}"></script>
     <script src="{{ asset('extra-libs/multicheck/jquery.multicheck.js') }}"></script>
     <script src="{{ asset('extra-libs/DataTables/datatables.min.js') }}"></script>
+
+    @if (session('add_modal'))
+        <script>
+            $('#add-Modal').modal('show');
+        </script>
+    @endif
+
+    @if (session('edit_modal'))
+        <script>
+            var id = {!! json_encode(session('id')) !!}
+            $('#edit-Modal' + id).modal('show');
+        </script>
+    @endif
 
     <script>
         /****************************************
@@ -267,14 +304,14 @@
             }
         });
 
-        function clickfileinput(id){
-            const fileInput = document.getElementById("editCategory-image-input"+id);
+        function clickfileinput(id) {
+            const fileInput = document.getElementById("editCategory-image-input" + id);
             fileInput.click();
         }
 
-        function changeImage(id){
-            const edit_image = document.getElementById("editCategory-image"+id);
-            const edit_fileInput = document.getElementById("editCategory-image-input"+id);
+        function changeImage(id) {
+            const edit_image = document.getElementById("editCategory-image" + id);
+            const edit_fileInput = document.getElementById("editCategory-image-input" + id);
 
             const file = edit_fileInput.files[0];
             const reader = new FileReader();
@@ -303,6 +340,5 @@
 
             reader.readAsDataURL(file);
         });
-        
     </script>
 @endsection

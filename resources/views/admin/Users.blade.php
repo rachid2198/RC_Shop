@@ -179,8 +179,8 @@
                                         class="col-sm-3 text-right control-label col-form-label">Nom</label>
                                     <div class="col-sm-9">
                                         <input type="text"
-                                            class="{{ $errors->any('name') ? 'form-control is-invalid' : 'form-control' }}"
-                                            id="fname" placeholder="Nom...." name="name">
+                                            class="{{ $errors->has('name') ? 'form-control is-invalid' : 'form-control' }}"
+                                            id="fname" placeholder="Nom...." name="name" value="{{old('name')}}">
                                         @error('name')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
@@ -195,8 +195,8 @@
                                         class="col-sm-3 text-right control-label col-form-label">Email</label>
                                     <div class="col-sm-9">
                                         <input type="email"
-                                            class="{{ $errors->any('email') ? 'form-control is-invalid' : 'form-control' }}"
-                                            id="fname" placeholder="Email..." name="email">
+                                            class="{{ $errors->has('email') ? 'form-control is-invalid' : 'form-control' }}"
+                                            id="fname" placeholder="Email..." name="email" value="{{old('email')}}">
                                         @error('email')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
@@ -210,7 +210,7 @@
                                         passe</label>
                                     <div class="col-sm-9">
                                         <input type="password"
-                                            class="{{ $errors->any('password') ? 'form-control is-invalid' : 'form-control' }}"
+                                            class="{{ $errors->has('password') ? 'form-control is-invalid' : 'form-control' }}"
                                             id="lname" placeholder="Mot de passe..." name="password">
                                         @error('password')
                                             <div class="invalid-feedback">

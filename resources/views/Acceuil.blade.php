@@ -1,5 +1,11 @@
 <x-Layout>
-  
+    <x-slot name="css">
+        <link rel="stylesheet" href="{{ asset('css/product-list.css') }}" />
+
+        <link rel="stylesheet" type="text/css" href="{{ asset('slick/slick.css') }}" />
+        <link rel="stylesheet" type="text/css" href="{{ asset('slick/slick-theme.css') }}" />
+
+    </x-slot>
     <!-- Hero/Intro Slider Start -->
     <div class="section ">
         <div class="hero-slider swiper-container slider-nav-style-1 slider-dot-style-1">
@@ -74,41 +80,20 @@
 
     <div class="banner-area style-one pt-100px pb-100px">
         <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="single-banner nth-child-1">
-                        <img src="{{ asset('images/banner/printer1.jpg') }}" style="height:64vh" alt="">
+            <div class="category-slider">
+                @foreach ($categories as $category)
+                    <div class="single-banner nth-child-1 mx-3">
+                        <img src="{{ $category->image ? asset('storage/' . $category->image . '') : asset('images/blank/blank-category.jpg') }}"
+                            style="height:64vh" alt="">
                         <div class="banner-content nth-child-1">
-                            <h3 class="title">Imprimantes 3D</h3>
-                            <a href="shop-left-sidebar.html" class="shop-link"><i class="fa fa-arrow-right"
-                                    aria-hidden="true"></i></a>
+                            <h3 class="title">{{ $category->nom }}</h3>
+                            <a href="{{ route('products-display', ['category' => $category->id]) }}" class="shop-link"><i class="fa fa-arrow-right" aria-hidden="true"></i></a>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="single-banner nth-child-2 mb-30px mb-lm-30px mt-lm-30px">
-                        <img class="img-fluid" src="{{ asset('images/banner/ventilo.jpg') }}" style="height:30vh"
-                            alt="">
-                        <div class="banner-content nth-child-2">
-                            <h3 class="title">Accessoires</h3>
-                            <a href="shop-left-sidebar.html" class="shop-link"><i class="fa fa-arrow-right"
-                                    aria-hidden="true"></i></a>
-                        </div>
-                    </div>
-                    <div class="single-banner nth-child-2">
-                        <img src="{{ asset('images/banner/battery1.jpg') }}" style="height:30vh" alt="">
-                        <div class="banner-content nth-child-3">
-                            <h3 class="title">Batteries</h3>
-                            <a href="shop-left-sidebar.html" class="shop-link"><i class="fa fa-arrow-right"
-                                    aria-hidden="true"></i></a>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </div>
-
-
     <!-- Banner Area End -->
     <!-- Product Area Start -->
     <div class="product-area pb-100px">
@@ -119,11 +104,11 @@
                     <!-- Tab Start -->
                     <div class="tab-slider d-md-flex justify-content-md-between align-items-md-center">
                         <ul class="product-tab-nav nav justify-content-start align-items-center">
-                            <li class="nav-item"><button class="nav-link" data-bs-toggle="tab"
+                            <li class="nav-item"><button class="nav-link active" data-bs-toggle="tab"
                                     data-bs-target="#newarrivals">Nouveau</button>
                             </li>
-                            <li class="nav-item"><button class="nav-link active" data-bs-toggle="tab"
-                                    data-bs-target="#toprated">Meilleurs Ventes</button>
+                            <li class="nav-item"><button class="nav-link" data-bs-toggle="tab"
+                                    data-bs-target="#toprated">A la une</button>
                             </li>
                         </ul>
                     </div>
@@ -137,7 +122,7 @@
                         <!-- 1st tab start -->
                         <div class="tab-pane fade show active" id="newarrivals">
                             <div class="row mb-n-30px">
-                                @foreach ($products as $product)
+                                @foreach ($new as $product)
                                     <div class="col-lg-4 col-xl-3 col-md-6 col-sm-6 col-xs-6 mb-30px">
                                         <x-product-card :product="$product" />
                                     </div>
@@ -148,7 +133,7 @@
                         <!-- 2nd tab start -->
                         <div class="tab-pane fade" id="toprated">
                             <div class="row">
-                                @foreach ($products as $product)
+                                @foreach ($featured as $product)
                                     <div class="col-lg-4 col-xl-3 col-md-6 col-sm-6 col-xs-6 mb-30px">
                                         <x-product-card :product="$product" />
                                     </div>
@@ -163,8 +148,7 @@
     </div>
     <!-- Product Area End -->
     <!-- Fashion Area Start -->
-    <div class="fashion-area"
-        data-bg-image="https://scontent.falg6-1.fna.fbcdn.net/v/t39.30808-6/292277809_588566952880156_8514613177602795382_n.png?_nc_cat=104&ccb=1-7&_nc_sid=730e14&_nc_eui2=AeFZAUMBz_fnvhMeizlG7DYHW03y3NtmnAJbTfLc22acAq27qjoUOJSpJaM5V8xFomA136To7dBF1JPO-rPn_YIu&_nc_ohc=b_HUyT_bNecAX8CIaDz&_nc_ht=scontent.falg6-1.fna&oh=00_AfDbWI_2ZPCG16IU0OhT_KDisjwL587izKkDgtqWAx5NHw&oe=6415CEE6">
+    <div class="fashion-area" data-bg-image="{{ asset('images/my_images/banner/home_banner.png') }}">
         <div class="container h-100">
             <div class="row justify-content-center align-items-center h-100">
                 <div class="col-12 text-center">
@@ -182,25 +166,54 @@
                 <div class="col-12">
                     <div class="section-title text-center">
                         <h2 class="title">Offres disponibles</h2>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque, eum.</p>
                     </div>
                 </div>
             </div>
             <div class="feature-product-slider swiper-container slider-nav-style-1">
                 <div class="swiper-wrapper">
-                    @foreach ($featured as $product)
+                    @foreach ($offered as $product)
                         <x-featured-products :featured_product="$product" />
                     @endforeach
                 </div>
                 <!-- Add Arrows -->
-                <div class="swiper-buttons">
-                    <div class="swiper-button-next"></div>
-                    <div class="swiper-button-prev"></div>
-                </div>
+                @if (count($offered) > 2)
+                    <div class="swiper-buttons">
+                        <div class="swiper-button-next"></div>
+                        <div class="swiper-button-prev"></div>
+                    </div>
+                @endif
             </div>
         </div>
     </div>
     <!-- Feature product area End -->
 
     @include('partials._Testimonials')
+
+    <x-slot name="js">
+        <script type="text/javascript" src="{{ asset('slick/slick.min.js') }}"></script>
+
+        <script>
+            $(document).ready(function() {
+                $('.category-slider').slick({
+                    infinite: true,
+                    slidesToShow: 2,
+                    slidesToScroll: @json(intval(count($categories) / 2)),
+                });
+            });
+        </script>
+
+        <script>
+            $(document).ready(function() {
+                $(".text-limit").each(function() {
+                    var text = $(this).text();
+                    var limit = 20;
+                    var truncated = text.slice(0, limit);
+                    if (text.length > limit) {
+                        truncated += "...";
+                    }
+                    $(this).text(truncated);
+                });
+            });
+        </script>
+    </x-slot>
 </x-Layout>

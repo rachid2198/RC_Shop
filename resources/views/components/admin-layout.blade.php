@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('images/favicon.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('images/favicon.ico') }}">
     <title>DZ RC modélisme</title>
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" />
     <!-- Custom CSS -->
@@ -56,7 +56,7 @@
                     <!-- ============================================================== -->
                     <!-- Logo -->
                     <!-- ============================================================== -->
-                    <a class="navbar-brand" href="index.html">
+                    <a class="navbar-brand" href="/">
                         <!-- Logo icon -->
                         <b class="logo-icon p-l-10 mr-3 d-flex align-items-center">
                             <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
@@ -107,7 +107,7 @@
 
                     @auth
                         <ul class="navbar-nav float-right my-auto">
-                                <h4 style="color: white">Bienvenu, {{ auth()->user()->name }}</h4>
+                            <h4 style="color: white">Bienvenue, {{ auth()->user()->name }}</h4>
                         </ul>
                     @endauth
 
@@ -129,7 +129,7 @@
                                 <form method="POST" action="/logout">
                                     @csrf
                                     <button class="dropdown-item" type="submit"><i
-                                        class="fa fa-power-off m-r-5 m-l-5"></i> déconnecter</button>
+                                            class="fa fa-power-off m-r-5 m-l-5"></i> déconnecter</button>
                                 </form>
                             </div>
                         </li>
@@ -152,9 +152,9 @@
                 <!-- Sidebar navigation-->
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav" class="p-t-30">
-                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                        {{-- <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
                                 href="/admin/dashboard" aria-expanded="false"><i class="fa fa-tachometer-alt"></i><span
-                                    class="hide-menu">Dashboard</span></a></li>
+                                    class="hide-menu">Dashboard</span></a></li> --}}
                         <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
                                 href="/admin/utilisateurs" aria-expanded="false"><i class="fa fa-users"></i><span
                                     class="hide-menu">Gestion des utilisateurs</span></a></li>
@@ -176,6 +176,13 @@
                         <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
                                 href="/admin/marques" aria-expanded="false"><i class="fa fa-tags"></i><span
                                     class="hide-menu">Marques</span></a></li>
+
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                                href="/admin/wilayas" aria-expanded="false"><i class="fa fa-truck"></i><span
+                                    class="hide-menu">Gestion des livraisons</span></a></li>
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                                href="/admin/commandes" aria-expanded="false"><i class="fa fa-clipboard-list"></i><span
+                                    class="hide-menu">Gestion des commandes</span></a></li>
                         {{-- <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/admin/commandes" aria-expanded="false"><i class="fa fa-tags"></i><span class="hide-menu">Commandes</span></a></li> --}}
                     </ul>
                 </nav>
@@ -212,9 +219,7 @@
 
             <!-- footer -->
             <!-- ============================================================== -->
-            <footer class="footer text-center">
-                All Rights Reserved by Matrix-admin. Designed and Developed by <a
-                    href="https://wrappixel.com">WrapPixel</a>.
+            <footer class="footer text-center" style="background-color: #eeeeee">
             </footer>
             <!-- ============================================================== -->
             <!-- End footer -->

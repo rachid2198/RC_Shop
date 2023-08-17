@@ -47,7 +47,7 @@
                         </span>
                     </div>
                     <!-- Form -->
-                    <form class="form-horizontal m-t-20" id="loginform" method="POST" action="/authentification">
+                    <form class="form-horizontal m-t-20" id="loginform" method="POST" action="/admin/dashboard">
                         @csrf
                         <div class="row p-b-30">
                             @error('failed')
@@ -79,8 +79,8 @@
                             <div class="col-12">
                                 <div class="form-group">
                                     <div class="p-t-20">
-                                        <button class="btn btn-info" id="to-recover" type="button"><i
-                                                class="fa fa-lock m-r-5"></i> Perdu votre mot de passe?</button>
+                                        {{-- <button class="btn btn-info" id="to-recover" type="button"><i
+                                                class="fa fa-lock m-r-5"></i> Perdu votre mot de passe?</button> --}}
                                         <button class="btn btn-success float-right" type="submit">Connecter</button>
                                     </div>
                                 </div>
@@ -88,7 +88,7 @@
                         </div>
                     </form>
                 </div>
-                <div id="recoverform">
+                {{-- <div id="recoverform">
                     <div class="text-center">
                         <span class="text-white">Enter your e-mail address below and we will send you instructions how
                             to recover a password.</span>
@@ -116,7 +116,7 @@
                             </div>
                         </form>
                     </div>
-                </div>
+                </div> --}}
             </div>
         </div>
         <!-- ============================================================== -->

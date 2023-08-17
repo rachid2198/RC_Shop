@@ -1,5 +1,7 @@
 <x-Layout>
-    <link rel="stylesheet" href="{{ asset('css/warranty.css') }}" />
+    <x-slot name="css">
+        <link rel="stylesheet" href="{{ asset('css/warranty.css') }}" />
+    </x-slot>
 
     <div class="login-register-area warranty faq-area">
         <div class="container">
@@ -20,7 +22,8 @@
                                 <li>Usure normale</li>
                                 <li>Dommages causés par des accidents, un incendie ou des catastrophes naturelles</li>
                             </ul>
-                            <p class="warning-paragraph">Veuillez noter que cette liste n'est pas exhaustive et que des exclusions supplémentaires
+                            <p class="warning-paragraph">Veuillez noter que cette liste n'est pas exhaustive et que des
+                                exclusions supplémentaires
                                 peuvent s'appliquer.</p>
                         </div>
                     </div>
@@ -28,4 +31,6 @@
             </div>
         </div>
     </div>
+    <x-slot name="js">
+    </x-slot>
 </x-Layout>

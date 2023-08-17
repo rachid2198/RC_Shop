@@ -1,4 +1,13 @@
 <x-Layout>
+    <x-slot name="css">
+        <style>
+            .main-img {
+                width: 100%;
+                height: 675px;
+                object-fit: cover;
+            }
+        </style>
+    </x-slot>
     <!-- Product Details Area Start -->
     <div class="product-details-area pt-100px pb-100px">
         <div class="container">
@@ -7,23 +16,38 @@
                     <!-- Swiper -->
                     <div class="swiper-container zoom-top">
                         <div class="swiper-wrapper">
-                            @for ($i = 0; $i < 3; $i++)
+                            <div class="swiper-slide">
+                                <img class="main-img img-responsive m-auto"
+                                    src={{ $product->image_principal ? asset('storage/' . $product->image_principal) : asset('images/blank/blank-category.jpg') }}
+                                    alt="{{ $product->nom }}">
+                                <a class="venobox full-preview" data-gall="myGallery"
+                                    href={{ $product->image_principal ? asset('storage/' . $product->image_principal) : asset('images/blank/blank-category.jpg') }}>
+                                    <i class="fa fa-arrows-alt" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                            @foreach ($product->getMedia('images') as $image)
                                 <div class="swiper-slide">
-                                    <img class="img-responsive m-auto" src={{ $product['image'] }} alt="">
-                                    <a class="venobox full-preview" data-gall="myGallery" href={{ $product['image'] }}>
+                                    <img class="main-img img-responsive m-auto" src={{ $image->getUrl() }}
+                                        alt="">
+                                    <a class="venobox full-preview" data-gall="myGallery" href={{ $image->getUrl() }}>
                                         <i class="fa fa-arrows-alt" aria-hidden="true"></i>
                                     </a>
                                 </div>
-                            @endfor
+                            @endforeach
                         </div>
                     </div>
                     <div class="swiper-container mt-20px zoom-thumbs slider-nav-style-1 small-nav">
                         <div class="swiper-wrapper">
-                            @for ($i = 0; $i < 3; $i++)
+                            <div class="swiper-slide">
+                                <img class=".main-img img-responsive m-auto"
+                                    src={{ $product->image_principal ? asset('storage/' . $product->image_principal) : asset('images/blank/blank-category.jpg') }}
+                                    alt="">
+                            </div>
+                            @foreach ($product->getMedia('images') as $image)
                                 <div class="swiper-slide">
-                                    <img class="img-responsive m-auto" src={{ $product['image'] }} alt="">
+                                    <img class="img-responsive m-auto" src={{ $image->getUrl() }} alt="">
                                 </div>
-                            @endfor
+                            @endforeach
                         </div>
                         <!-- Add Arrows -->
                         <div class="swiper-buttons">
@@ -34,10 +58,17 @@
                 </div>
                 <div class="col-lg-6 col-sm-12 col-xs-12" data-aos="fade-up" data-aos-delay="200">
                     <div class="product-details-content quickview-content ml-25px">
-                        <h2>{{ $product['title'] }}</h2>
+                        <h2>{{ $product['nom'] }}</h2>
                         <div class="pricing-meta">
                             <ul class="d-flex">
-                                <li class="new-price">{{ $product['price'] }} DA</li>
+                                @if ($product->offer)
+                                    <li class="new-price" style="text-decoration: line-through; color:#B2B2B2">
+                                        {{ intval($product['prix']) }} DA</li>
+                                    <div style="font-size: 3rem" class="mx-1"> - </div>
+                                @endif
+                                <li class="new-price">
+                                    {{ $product->offer ? intval($product['prix_vente']) : intval($product['prix']) }} DA
+                                </li>
                             </ul>
                         </div>
                         <p class="mt-30px">{{ $product['description'] }}</p>
@@ -45,32 +76,46 @@
                             <span>Categories: </span>
                             <ul class="d-flex">
                                 <li>
-                                    <a href="#">{{ $product['category'] }}</a>
+                                    <a href="#">{{ $product->category->nom }}</a>
                                 </li>
                             </ul>
                         </div>
                         <div class="pro-details-categories-info pro-details-same-style d-flex m-0">
-                            <span>Tags: </span>
+                            <span>Sous catégorie: </span>
                             <ul class="d-flex">
                                 <li>
-                                    <a href="#">Eléctroniques, </a>
-                                </li>
-                                <li>
-                                    <a href="#">Accessoires</a>
+                                    <a href="#">{{ $product->subcategory->nom }}</a>
                                 </li>
                             </ul>
                         </div>
-                        <div class="pro-details-quality">
-                            <div class="cart-plus-minus">
-                                <input class="cart-plus-minus-box" type="text" name="qtybutton" value="1" />
-                            </div>
-                            <div class="pro-details-cart">
-                                <button class="add-cart"> Ajouter au Panier</button>
-                            </div>
-                            <div class="pro-details-compare-wishlist pro-details-wishlist ">
-                                <a href="{{asset('files/fiche-technique.pdf')}}"><i class="pe-7s-download"></i></a>
-                            </div>
+                        <div class="pro-details-categories-info pro-details-same-style d-flex m-0">
+                            <span>Marque: </span>
+                            <ul class="d-flex">
+                                <li>
+                                    <a href="#">{{ $product->brand->nom }}</a>
+                                </li>
+                            </ul>
                         </div>
+                        <form method="POST" action="{{ route('addToCart', ['product_id' => $product->id]) }}">
+                            @csrf
+                            <div class="pro-details-quality">
+
+
+                                <div class="cart-plus-minus">
+                                    <input class="cart-plus-minus-box" type="text" name="quantité" value="1" />
+                                </div>
+                                <div class="pro-details-cart">
+                                    <button class="add-cart" type="submit"> Ajouter au Panier</button>
+                                </div>
+
+                                @if ($product->fichier_technique)
+                                    <div class="pro-details-compare-wishlist pro-details-wishlist ">
+                                        <a href="{{ asset('storage/' . $product->fichier_technique) }}"><i
+                                                class="pe-7s-download"></i></a>
+                                    </div>
+                                @endif
+                            </div>
+                        </form>
                     </div>
                     <!-- product details description area start -->
                     <div class="description-review-wrapper">
@@ -82,23 +127,25 @@
                         <div class="tab-content description-review-bottom">
                             <div id="des-details2" class="tab-pane">
                                 <div class="product-anotherinfo-wrapper text-start">
-                                    <ul>
-                                        <li><span>Volume d'impression</span> 199.1 oz./1,6 gal./5,9 L</li>
-                                        <li><span>Écran d'exposition</span>9,25'' monochrome</li>
-                                        <li><span>Surface d'écran</span> 38,22 in² / 248,75 cm²</li>
-                                        <li><span>Poids de la machine</span> 24,3 lb / 11 kg
-                                        </li>
-                                    </ul>
+                                    <table class="property-list">
+                                        @foreach ($product->properties as $property)
+                                            <tr>
+                                                <td>
+                                                    {{ $property->nom }}
+                                                </td>
+                                                <td>
+                                                    {{ $property->valeur }}
+                                                </td>
+                                            </tr>
+                                        @endforeach
+
+                                    </table>
                                 </div>
                             </div>
                             <div id="des-details1" class="tab-pane active">
                                 <div class="product-description-wrapper">
                                     <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eius tempor
-                                        incidid ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                                        exercitation ullamco laboris nisi ut aliquip efgx ea co consequat. Duis aute
-                                        irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-                                        nulla pariatur. Excepteur sint occae cupidatat non proident, sunt in culpa qui
+                                        {{ $product->description }}
                                     </p>
                                 </div>
                             </div>
@@ -111,9 +158,12 @@
     </div>
 
     <!--youtube video --->
-    <div class="video-presentation">
-        <iframe src="https://www.youtube.com/embed/6wBrgs2j8JY" width="100%" height="100%" allowfullscreen></iframe>
-    </div>
+    @if ($product->url_video)
+        <div class="video-presentation">
+            <iframe src={{ Str::replaceFirst('watch?v=', 'embed/', $product->url_video) }} width="100%"
+                height="100%" allowfullscreen></iframe>
+        </div>
+    @endif
 
     <!-- Product Area Start -->
     <div class="product-area related-product">
@@ -123,7 +173,6 @@
                 <div class="col-12">
                     <div class="section-title text-center m-0">
                         <h2 class="title">Produits Similaires</h2>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore, magnam.</p>
                     </div>
                 </div>
             </div>
@@ -148,4 +197,19 @@
             </div>
         </div>
     </div>
+    <x-slot name="js">
+        <script>
+            $(document).ready(function() {
+                $(".text-limit").each(function() {
+                    var text = $(this).text();
+                    var limit = 20;
+                    var truncated = text.slice(0, limit);
+                    if (text.length > limit) {
+                        truncated += "...";
+                    }
+                    $(this).text(truncated);
+                });
+            });
+        </script>
+    </x-slot>
 </x-Layout>

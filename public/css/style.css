@@ -1938,7 +1938,7 @@ body.offcanvas-open {
   border-radius: 18px;
   width: 215px;
   height: 61px;
-  background-color: transparent;
+  /* background-color: transparent; */
 }
 .btn:focus {
   -webkit-box-shadow: none;
@@ -1970,7 +1970,7 @@ body.offcanvas-open {
   border-radius: 18px;
   width: 215px;
   height: 61px;
-  background-color: transparent;
+  /* background-color: transparent; */
 }
 @media only screen and (max-width: 575px) {
   .btn-primary {
@@ -4911,9 +4911,9 @@ body.offcanvas-open {
   padding-bottom: 80px;
 }
 
-.trstimonial-area.about{
+/* .trstimonial-area.about{
   margin-top: 350px;
-}
+} */
 
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
   .trstimonial-area {
@@ -8081,7 +8081,7 @@ body.offcanvas-open {
 .grand-totall .grand-totall-title span {
   float: right;
 }
-.grand-totall a {
+.grand-totall a, .grand-totall button {
   background-color: #0099df;
   border-radius: 0px;
   color: #fff;
@@ -8096,7 +8096,7 @@ body.offcanvas-open {
   -webkit-transition: all 0.3s ease 0s;
   transition: all 0.3s ease 0s;
 }
-.grand-totall a:hover {
+.grand-totall a:hover, .grand-totall button:hover {
   background-color: #000000;
 }
 

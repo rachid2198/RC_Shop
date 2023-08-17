@@ -1,89 +1,139 @@
 <x-Layout>
-    <link rel="stylesheet" href="{{ asset('css/tracking.css') }}" />
-
-    <div class="tracking-form" id="track-form" style="display:block">
-        <div class="container">
-            <div class="order-tracking">
-                <p>Pour suivre vos commandes, veuillez saisir l'identifiant de votre commande et le numéro de télephone que vous avez utiliser,
-                    et appuyer sur le bouton "Suivre"
-                </p>
-                {{-- <p>To track your order please enter your Order ID in the box below and press the "Track" button. This
-                    was given to you on your receipt and in the confirmation email you should have received.</p> --}}
-                <form action="#">
-                    <div class="row mb-n-30px">
-                        <div class="col-12 mb-30px">
-                            <label for="orderID">Identifiant de la commande</label>
-                            <input id="orderID" type="text" placeholder="Identifiant">
-                        </div>
-                        <div class="col-12 mb-30px">
-                            <label for="billingEmail">Numéro de télephone</label>
-                            <input id="billingEmail" type="text" placeholder="Le numéro que vous avez utiliser dans la commande">
-                        </div>
-                        <div class="col-12 text-center mb-30px">
-                            <button class="btn btn-dark btn-outline-hover-dark" onclick="track('suivre')">Suivre</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
-    <div class="order-container" id="track-order" style="display:none">
-        <article class="card">
-            <header class="card-header"> Votre commande </header>
-            <div class="card-body">
-                <h6>Identifiant de la commande: OD45345345435</h6>
-                <article class="card">
-                    <div class="card-body row">
-                        <div class="col"> <strong>Temps estimé de la livraison:</strong> <br>29 nov 2019 </div>
-                        <div class="col"> <strong>Livraison par:</strong> <br> Société, | <i class="fa fa-phone"></i>
-                            +1598675986 </div>
-                        <div class="col"> <strong>Status:</strong> <br> Ramassé par le livreur </div>
-                        <div class="col"> <strong>Tracking #:</strong> <br> OD45345345435 </div>
-                    </div>
-                </article>
-                <div class="track">
-                    <div class="step active"> <span class="icon"> <i class="fa fa-check"></i> </span> <span
-                            class="text">Commande confirmé </span> </div>
-                    <div class="step active"> <span class="icon"> <i class="fa fa-user"></i> </span> <span
-                            class="text"> Ramassé par le livreur </span> </div>
-                    <div class="step"> <span class="icon"> <i class="fa fa-truck"></i> </span> <span class="text">
-                            En cours de livraison </span> </div>
-                    <div class="step"> <span class="icon"> <i class="fa fa-dropbox"></i></span> <span
-                            class="text">prêt pour le ramassage</span> </div>
-                </div>
-                <hr>
-                <ul class="row">
-                    @foreach ($cart as $product)
-                        <li class="col-md-4">
-                            <figure class="itemside mb-3">
-                                <div class="aside"><img src={{$product['image']}} class="img-sm border">
-                                </div>
-                                <figcaption class="info align-self-center">
-                                    <p class="title">{{$product['title']}} <br> Quantité: {{$product['amount']}}</p> <span
-                                        class="text-muted">{{$product['price']}} DA</span>
-                                </figcaption>
-                            </figure>
-                        </li>
-                    @endforeach
-                </ul>
-                <hr>
-                <a class="btn btn-warning" data-abc="true" onclick="track('done')"> Chercher une autre commande</a>
-            </div>
-        </article>
-    </div>
-
-
-    <script>
-        function track(action){
-            if(action=="suivre"){
-                document.getElementById("track-order").style.display="block";
-                document.getElementById("track-form").style.display="none";
-            }else{
-                document.getElementById("track-order").style.display="none";
-                document.getElementById("track-form").style.display="block";
+    <x-slot name="css">
+        <style>
+            .tracking-title {
+                color: #355669;
+                margin-bottom: 2rem;
             }
-        }
-    </script>
 
+            .tracking-form .col {
+                margin-right: 3rem;
+            }
+
+            .tracking-form,
+            .tracking-table {
+                margin-bottom: 4rem;
+            }
+
+            .btn {
+                border-radius: 0px;
+                font-size: 1rem;
+            }
+        </style>
+    </x-slot>
+
+    <div class="container pt-5">
+        <h3 class="tracking-title">Suivi de ma commande</h3>
+
+        <form method="POST" action="{{ route('order-list') }}">
+            @csrf
+            <div class="row align-items-center tracking-form">
+                <div class="col col-3">
+                    <label for="num_commande">Entrer le numéro de télephone</label>
+                    <input type="text" class="form-control" id="num_commande" name="num_tel" required>
+                    @if ($message != null)
+                        <div class="invalid-feedback" style="display: block">
+                            {{ $message }}
+                        </div>
+                    @endif
+                </div>
+                <div class="col col-3 align-self-center">
+                    <button type="submit" class="btn btn-primary btn-custom">Suivre ma commande</button>
+                </div>
+            </div>
+        </form>
+
+
+
+        @if ($orders != null)
+            <div class="row tracking-table">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title m-b-0">Vos commandes</h5>
+                        </div>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">date de la commande</th>
+                                    <th scope="col">statut actuel</th>
+                                    <th scope="col">Total de la commande</th>
+                                    <th scope="col">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($orders as $order)
+                                    <tr>
+                                        <td>{{ $order->created_at }}</td>
+                                        <td>{{ $order->statut }}</td>
+                                        <td>{{ $order->total }} DA</td>
+                                        <td><button type="button" class="btn-link text-primary" data-bs-toggle="modal"
+                                                data-bs-target="#view-Modal{{$order->id}}"> voir les details </button>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        @endif
+    </div>
+
+    @if ($orders != null)
+        @foreach ($orders as $order)
+            <div class="modal fade" id="view-Modal{{$order->id}}" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Détails de la commande</h5>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="card">
+                                        <div class="card-body">
+                                        </div>
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">Article</th>
+                                                    <th scope="col">Quantité</th>
+                                                    <th scope="col">Prix unitaire</th>
+                                                    <th scope="col">Total</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach ($order->articles as $item)
+                                                    <tr>
+                                                        <td>{{ $item->product->nom }} </td>
+                                                        <td>{{ $item->quantity }}</td>
+                                                        <td>{{ $item->product->prix }} DA</td>
+                                                        <td> {{ $item->product->prix * $item->quantity }} DA</td>
+                                                    </tr>
+                                                @endforeach
+
+                                                {{-- last column --}}
+                                                <tr>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td>Prix livraison: {{ $order->prix_livraison }} DA</td>
+                                                    <td>Total: {{ $order->total }} DA</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @endforeach
+    @endif
+
+
+    <x-slot name="js">
+    </x-slot>
 </x-Layout>
